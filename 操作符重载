@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cstring>
+#include <sstream>
+using namespace std;
+class holiday
+{
+	private:
+	int day;
+	int month;
+	int year;
+	string data;
+	public:
+	holiday(int inputday,int inputmonth,int inputyear):day(inputday),month(inputmonth),year(inputyear) 
+	{cout<<"A new instance was created.\n";}
+operator const char*()//type convention类型转换
+{
+	ostringstream ss;
+	ss<<year<<"/"<<month<<"/"<<day;
+	data=ss.str();
+	return data.c_str();
+}
+holiday& operator ++ ()//unary plus operator reloading单目加运算符重载
+{
+	++day;
+	return *this;
+}
+
+};
+int main() 
+
+{
+	int day_m=0,month_m=0,year_m=0;
+	cout <<"please input holiday \n";
+	cin>>day_m ;
+	cin>>month_m ;
+	cin>>year_m ;
+	holiday john(day_m,month_m ,year_m  );
+	cout <<"john's holiday is "<<john<<endl;
+	++john;
+	cout <<"after ++john,now john's holiday is: "<<john;
+	return 0;
+}
